@@ -14,6 +14,7 @@ output/
 
 # Local UI state
 .gradio/
+.runtime
 
 # Local secrets
 .env
