@@ -51,7 +51,7 @@ def build_demo() -> gr.Blocks:
         gr.Markdown(
             """
             # Doc Demo Graph
-            这是一个单进程 `LangGraph + Gradio` 原型，用于调度现有 `scripts/` 中的文档处理能力。
+            这是一个单进程 `LangGraph + Gradio` 原型，用于调度 `skills/` 中的文档处理能力。
             """
         )
         with gr.Row():

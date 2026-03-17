@@ -2,10 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from skills import formatter_engine
 from skills.document_runtime import run_formatter, validate_input_path
-
-
-SUPPORTED_FORMATTER_PRESETS = {"official", "academic", "legal"}
 
 
 def format_document_with_preset_for_skill(
@@ -15,7 +13,8 @@ def format_document_with_preset_for_skill(
     """Single black-box formatter entry for file-based skill execution."""
     try:
         validate_input_path(input_path)
-        if preset_name not in SUPPORTED_FORMATTER_PRESETS:
+        supported_presets = sorted(formatter_engine.PRESETS.keys())
+        if preset_name not in formatter_engine.PRESETS:
             return {
                 "success": False,
                 "input_path": input_path,
@@ -23,7 +22,7 @@ def format_document_with_preset_for_skill(
                 "preset_name": preset_name,
                 "message": (
                     "暂不支持该预设。当前仅支持: "
-                    + ", ".join(sorted(SUPPORTED_FORMATTER_PRESETS))
+                    + ", ".join(supported_presets)
                 ),
             }
 

@@ -45,12 +45,16 @@
 当前文档处理实现统一放在 `skills/`：
 
 - 公共执行封装：`skills/document_runtime.py`
+- 独立 analyzer 引擎：`skills/analyzer_engine.py`
 - analyzer 实现：`skills/analyzer_routing.py`
+- 独立 punctuation 引擎：`skills/punctuation_engine.py`
 - punctuation 实现：`skills/punctuation_fix.py`
+- 独立 formatter 引擎：`skills/formatter_engine.py`
 - formatter 实现：`skills/formatter_apply.py`
 
 输出文件默认落在 `output/artifacts/`。
 中间临时文件默认落在 `output/temp/`。
+当前运行时已不再依赖 `scripts/`，`scripts/` 仅保留为参考来源。
 
 ## 与 LangChain skill 的关系
 
@@ -80,4 +84,3 @@
 - `compare_analysis_reports`
 - `format_tables_only`
 - `apply_page_numbers_only`
-- `validate_custom_preset`

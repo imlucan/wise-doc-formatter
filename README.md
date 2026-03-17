@@ -14,6 +14,7 @@
 - punctuation 已提供单一文件处理入口，返回 success 和 output_path
 - formatter 已提供黑盒文件处理入口，返回 success、output_path、preset_name 和 message
 - 文档处理实现统一归属到 `skills/`，不再放在 `tools/`
+- 当前 `skills` 运行时已不再依赖 `scripts` 执行，`scripts` 仅作为参考实现保留
 - formatter 的 `preset_name` 当前推荐由界面或上层参数显式传入
 
 ## LLM Chat 准备

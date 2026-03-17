@@ -17,6 +17,7 @@
 - 保留 `scripts/` 原样能力
 - 在 `skills/` 建立稳定实现层
 - 在 `doc/` 中记录规则、输入输出和边界条件
+- 一旦对应 skill 迁移完成，运行时链路不再回落到 `scripts/`
 
 ### 阶段二
 
@@ -52,6 +53,8 @@
 - skill 实现层：`skills/`
 - 注入适配层：`src/doc_demo/skills/`
 - 项目级补充文档：`doc/`
+
+当前 `analyzer`、`punctuation`、`formatter` 的运行时执行链路已切换到 `skills/` 内部 engine 实现，`scripts/` 仅保留为参考脚本，不再作为线上调用入口。
 
 ## 讨论结论沉淀
 

@@ -14,7 +14,7 @@
 
 ### 1. 本地字体检测
 
-当前 `formatter.py` 中存在 macOS 字体检测与回退逻辑，但你已经确认：
+当前参考脚本 `scripts/formatter.py` 中仍存在 macOS 字体检测与回退逻辑，但你已经确认：
 
 - 目标运行环境是 Linux Docker
 - 服务器会预装格式化需要的字体
@@ -22,23 +22,19 @@
 
 结论：
 
-- 这部分暂时不作为当前 skill 改造重点
-- 后续真正改造 formatter 时，可优先弱化或移除“本地字体检测”逻辑
+- `skills/formatter_engine.py` 已移除这部分 macOS 兼容逻辑
+- 当前 skill 执行链按统一环境处理，不再做平台特判
+- 参考脚本中的同类逻辑暂时保留，不作为运行时入口
 
 ### 2. 预设加载
 
-当前存在：
-
-- 内置 `PRESETS`
-- 外部 `custom_settings.json`
+当前 formatter skill 仅保留内置 `PRESETS`。
 
 结论：
 
-- 先做简单版本
-- 后续 formatter skill 改造时，将 `custom_settings.json` 的内容内嵌为代码内置项
-- 暂不继续扩展外部自定义配置加载
-
-这个方向当前仅记录在文档与 skill 实现层中，不再改动参考用的 `scripts/formatter.py`。
+- 当前不支持自定义 preset
+- 预设真值统一以 `skills/formatter_engine.py` 中的 `PRESETS` 为准
+- 上层调用与 skill 校验都应基于同一份预设集合判断
 
 ### 3. 文档结构识别
 
@@ -94,7 +90,6 @@
 
 ## 暂不处理的内容
 
-- 本地字体检测精简
+- 参考脚本中的本地字体检测清理
 - 结构识别由 LLM 注入
 - formatter 内部细粒度拆分
-- 自定义 preset 外部配置体系

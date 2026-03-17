@@ -2,7 +2,7 @@
 
 ## 当前目标
 
-本仓库已初始化为单进程 `LangGraph + Gradio` 原型，保留现有 `scripts/` 作为能力来源，通过 `src/doc_demo/` 做统一包装与编排。
+本仓库已初始化为单进程 `LangGraph + Gradio` 原型，当前以 `skills/` 作为文档处理执行层，通过 `src/doc_demo/` 做统一包装与编排。
 
 ## 目录结构
 
@@ -21,15 +21,14 @@ doc_demo/
 |   |-- skills/
 |   |-- ui/
 |   `-- utils/
-|-- custom_settings.json
 |-- main.py
 `-- pyproject.toml
 ```
 
 ## 分层职责
 
-- `scripts/`: 历史脚本能力源，当前继续承担核心文档处理逻辑。
-- `skills/`: 独立 skill 实现层与同目录说明文件，便于后续复用、上传或迁移。
+- `scripts/`: 历史脚本能力源，当前主要作为参考实现保留。
+- `skills/`: 独立 skill 实现层与同目录说明文件，便于后续复用、上传或迁移；运行时不再依赖 `scripts/`。
 - `src/doc_demo/chat/`: OpenAI 兼容聊天服务，负责消息组织与 skill 调用循环。
 - `src/doc_demo/skills/`: 以 LangChain tool 形式暴露的内置 skill，便于后续替换为真正的项目 skill。
 - `src/doc_demo/graph/`: LangGraph 工作流定义，负责分析、路由和执行动作。
