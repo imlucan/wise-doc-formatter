@@ -1,1 +1,1 @@
-"""Document processing tools."""
+"""Reserved namespace for future generic tools."""

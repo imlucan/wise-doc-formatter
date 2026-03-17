@@ -45,11 +45,59 @@
 
 `formatter.py` 当前已按黑盒文件处理能力进入第一阶段 skill 化，默认 skill 为 `format_document_with_preset`，重点返回处理是否成功、输出文件路径、预设名和消息。
 
+`fix_spacing.py` 与 `fix_spacing_simple.py` 当前已明确标记为暂缓迁移、候选废弃，不纳入现阶段 skill 体系。
+
 当前迁移结构已调整为：
 
 - skill 实现层：`skills/`
 - 注入适配层：`src/doc_demo/skills/`
 - 项目级补充文档：`doc/`
+
+## 讨论结论沉淀
+
+### skill 文档边界
+
+`skills/*.md` 只保留与 skill 本身直接相关的内容：
+
+- 目的
+- 输入
+- 输出
+- 文件副作用
+- 参数约束
+
+以下内容不再放进 `skills/*.md`，统一收口到本文件或其他 `doc/` 文档：
+
+- 第一阶段/后续阶段讨论
+- 是否以后交给 LLM 决定
+- 是否以后支持更多 preset
+- 注入适配层细节
+- 工作流如何路由其他 skill
+
+### analyzer 结论
+
+- 继续保持单一高信息入口：`inspect_document_for_routing`
+- 不暴露多个细粒度分析函数给模型自由拼装
+- 其价值是“前置分析 + 后续工具推荐”，而不是直接修复文档
+
+### punctuation 结论
+
+- 保持为单一文件处理入口：`fix_document_punctuation`
+- 返回值以 `success` 和 `output_path` 为核心
+- 不在 skill 文档中扩展过多 roadmap 或统计细节说明
+
+### formatter 结论
+
+- 第一阶段继续按黑盒 skill 处理：`format_document_with_preset`
+- 返回值以 `success`、`output_path`、`preset_name`、`message` 为主
+- `preset_name` 第一阶段由界面或上层参数显式传入
+- LLM 可以推荐 preset，但不应静默决定最终格式
+- 本地字体检测、结构识别由 LLM 注入、细粒度拆分等话题，保留在项目级文档中讨论
+
+### fix_spacing 脚本结论
+
+- `fix_spacing.py`：暂缓迁移，候选废弃
+- `fix_spacing_simple.py`：暂缓迁移，候选废弃
+- 当前不纳入 skill 体系
 
 ## 需要持续维护的内容
 

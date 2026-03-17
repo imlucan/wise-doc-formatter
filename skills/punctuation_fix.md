@@ -1,41 +1,33 @@
 # punctuation-fix
 
-## 目的
+## Purpose
 
-这是 `punctuation.py` 的 skill 实现层说明文件。
+修复 `.docx` 文件中的中文标点问题，并输出新的文档文件。
 
-它负责接收一个 `.docx` 文件路径，执行中文标点修复，并返回是否处理成功以及输出文件地址。
+## Entry
 
-## 对外定位
+- `fix_document_punctuation`
 
-- 唯一入口：`fix_document_punctuation`
-- 实现文件：`skills/punctuation_fix.py`
-- 注入适配层：`src/doc_demo/skills/builtin.py`
-
-## 输入
+## Inputs
 
 - `input_path`
-  - 一个 `.docx` 文件路径
+  - `.docx` 文件路径
 
-## 输出
+## Outputs
 
-返回一个结构化对象，核心字段为：
+返回一个结构化对象，包含：
 
 - `success`
 - `output_path`
-
-同时补充：
-
 - `input_path`
 - `message`
 
-## 文件约定
+## Side Effects
 
-- 原始文件不覆盖
+- 不覆盖原始文件
 - 输出文件写入 `output/artifacts/`
 
-## 当前边界
+## Constraints
 
-- 当前不直接返回“改了多少段落”的精细统计
-- 当前失败时只返回简单错误信息
-- 更详细的修复统计后续可以再补
+- 只接受 `.docx` 文件路径
+- 当前返回值不包含精细修复统计

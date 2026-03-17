@@ -1,23 +1,19 @@
 # analyzer-routing
 
-## 目的
+## Purpose
 
-这是 `analyzer.py` 的 skill 实现层说明文件。
+分析一个 `.docx` 文件，返回可用于后续决策的结构化结果。
 
-它的核心职责不是直接修复文档，而是先给出一份足够让 LLM 做下一步决策的分析结果，用于触发后续工具调用。
+## Entry
 
-## 对外定位
+- `inspect_document_for_routing`
 
-- 唯一入口：`inspect_document_for_routing`
-- 实现文件：`skills/analyzer_routing.py`
-- 注入适配层：`src/doc_demo/skills/builtin.py`
-
-## 输入
+## Inputs
 
 - `input_path`
-  - 一个 `.docx` 文件路径
+  - `.docx` 文件路径
 
-## 输出
+## Outputs
 
 返回一个结构化对象，包含：
 
@@ -28,10 +24,11 @@
 - `samples`
 - `raw_analysis`
 
-## 路由目标
+## Side Effects
 
-默认用于决定是否调用：
+- 无输出文件
+- 不修改原始文档
 
-- `fix_document_punctuation`
-- `format_document_with_preset`
-- 或转入人工复核
+## Constraints
+
+- 只接受 `.docx` 文件路径

@@ -13,6 +13,8 @@
 - skill 实现开始独立沉淀到 `skills/` 目录
 - punctuation 已提供单一文件处理入口，返回 success 和 output_path
 - formatter 已提供黑盒文件处理入口，返回 success、output_path、preset_name 和 message
+- 文档处理实现统一归属到 `skills/`，不再放在 `tools/`
+- formatter 的 `preset_name` 当前推荐由界面或上层参数显式传入
 
 ## LLM Chat 准备
 

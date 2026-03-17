@@ -31,11 +31,13 @@
 ### `fix_spacing.py`
 
 - 暂不单独暴露
+- 状态：暂缓迁移，候选废弃
 - 原因：与 `formatter.py` 职责重叠，长期应并入格式化服务
 
 ### `fix_spacing_simple.py`
 
 - 暂不单独暴露
+- 状态：暂缓迁移，候选废弃
 - 原因：策略过于粗放，不适合作为默认公开能力
 
 ## 当前实现位置
@@ -68,6 +70,7 @@
 
 `format_document_with_preset` 当前也已迁移为独立 skill 实现。
 实现层位于 `skills/formatter_apply.py`，说明位于 `skills/formatter_apply.md`。
+当前第一阶段推荐由界面或上层参数明确传入 `preset_name`，不让 LLM 静默决定最终格式。
 
 ## 后续拆分建议
 
