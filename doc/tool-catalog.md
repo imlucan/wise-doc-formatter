@@ -38,9 +38,14 @@
 - 暂不单独暴露
 - 原因：策略过于粗放，不适合作为默认公开能力
 
-## 当前包装层位置
+## 当前实现位置
 
-首批包装代码位于 `src/doc_demo/tools/document_tools.py`。
+当前文档处理实现统一放在 `skills/`：
+
+- 公共执行封装：`skills/document_runtime.py`
+- analyzer 实现：`skills/analyzer_routing.py`
+- punctuation 实现：`skills/punctuation_fix.py`
+- formatter 实现：`skills/formatter_apply.py`
 
 输出文件默认落在 `output/artifacts/`。
 中间临时文件默认落在 `output/temp/`。
